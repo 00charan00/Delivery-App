@@ -1,0 +1,25 @@
+import Login from './Login.jsx';
+import Register from './Register.jsx';
+import Home from './Home.jsx';
+import Inventory from './Inventory.jsx';
+import Delivery from './Delivery.jsx';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Navbar from "./Navbar";
+
+
+function App() {
+  return (
+      <BrowserRouter>
+          {/*<Navbar/>*/}
+        <Routes>
+          <Route path='/' element={<Login />}></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/inventory' element={<Inventory />}></Route>
+          <Route path='/delivery' element={<Delivery />}></Route>
+        </Routes>
+      </BrowserRouter>
+  );
+}
+
+export default App;
