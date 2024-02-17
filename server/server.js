@@ -17,11 +17,12 @@ const db = mysql.createConnection({
 
 app.post('/register',(req,res)=>{
     console.log(req.body);
-    const sql="INSERT INTO registertable(`name`,`email`,`password`) VALUES (?)";
+    const sql="INSERT INTO registertable(`name`,`email`,`password`,`role`) VALUES (?)";
     const values=[
         req.body.name,
         req.body.email,
         req.body.password,
+        req.body.role,
     ]
     db.query(sql,[values],(err,data)=>{
         if(err){
@@ -37,15 +38,18 @@ app.post('/register',(req,res)=>{
 app.post('/login',(req,res)=>{
     const sql="SELECT * FROM registertable WHERE `email` = ? AND `password` = ?";
     db.query(sql,[req.body.email,req.body.password],(err,data)=>{
-        let email=req.body.email;
+        let role=req.body.role;
         if(err){
             return res.json("ERROR");
         }
-        if (email.endsWith("@inventory.com")){
-            return res.json("Inventory Login");
+        if(role==="deliveryagent"){
+            return res.json("DELIVERY AGENT");
         }
-        else if (email.endsWith("@delivery.com")){
-            return res.json("Delivery Login");
+        if(role==="inventoryagent"){
+            return res.json("INVENTORY AGENT");
+        }
+        if(role==="normaluser"){
+            return res.json("USER LOGIN");
         }
         else{
             return res.json("login Failure");
@@ -70,10 +74,11 @@ app.get('/inventory', (req, res) => {
 //inventory add
 
 app.post('/inventoryadd',(req,res)=>{
-    const sql="INSERT INTO inventory(`p_name`,`p_id`,`p_category`,`expiry`,`check_in`) VALUES (?)";
+    console.log(req.body.data);
+    const sql="INSERT INTO inventory(`p_name`,`count`,`p_category`,`expiry`,`check_in`) VALUES (?)";
     const values=[
         req.body.p_name,
-        req.body.p_id,
+        req.body.count,
         req.body.p_category,
         req.body.expiry,
         req.body.check_in,

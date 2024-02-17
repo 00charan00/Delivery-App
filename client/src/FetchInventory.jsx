@@ -18,7 +18,7 @@ function InventoryTable() {
                 <thead>
                 <tr>
                     <th className="px-4 py-2">Name</th>
-                    <th className="px-4 py-2">ID</th>
+                    <th className="px-4 py-2">Count</th>
                     <th className="px-4 py-2">Category</th>
                     <th className="px-4 py-2">Expiry</th>
                     <th className="px-4 py-2">Check-in</th>
@@ -26,9 +26,9 @@ function InventoryTable() {
                 </thead>
                 <tbody>
                 {inventoryData.map(item => (
-                    <tr key={item.p_id} className="bg-gray-100">
+                    <tr key={item.id} className="bg-gray-100">
                         <td className="border px-4 py-2">{item.p_name}</td>
-                        <td className="border px-4 py-2">{item.p_id}</td>
+                        <td className="border px-4 py-2">{item.count}</td>
                         <td className="border px-4 py-2">{item.p_category}</td>
                         <td className="border px-4 py-2">{moment(item.expiry).format('DD/MM/YY')}</td>
                         <td className="border px-4 py-2">{moment(item.check_in).format('DD/MM/YY')}</td>

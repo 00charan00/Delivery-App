@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function Inventory() {
     const [formData, setFormData] = useState({
-        p_name: '', p_id: '', p_category: '', expiry: '', check_in: ''
+        p_name: '', count: '', p_category: '', expiry: '', check_in: ''
     });
 
     const handleChange = (e) => {
@@ -39,14 +39,14 @@ function Inventory() {
                         />
                     </div>
                     <div className="w-full md:w-1/6 px-2 mb-4 md:mb-0">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Product Id</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Count</label>
                         <input
                             className="shadow appearance-none border rounded w-full py-1 px-2 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="number"
-                            name="p_id"
-                            value={formData.p_id}
+                            name="count"
+                            value={formData.count}
                             onChange={handleChange}
-                            placeholder="Product Id"
+                            placeholder="Count"
                         />
                     </div>
                     <div className="w-full md:w-1/6 px-2 mb-4 md:mb-0">
@@ -56,9 +56,9 @@ function Inventory() {
                             name="p_category"
                             value={formData.p_category}
                             onChange={handleChange}
-                            defaultValue="Perishable/Non Perishable"
+
                         >
-                            <option value="Perishable">Perishable</option>
+                            <option defaultValue="Perishable/Non Perishable" value="Perishable">Perishable</option>
                             <option value="Non-Perishable">Non-Perishable</option>
                         </select>
 

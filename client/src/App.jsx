@@ -5,6 +5,7 @@ import Inventory from './Inventory.jsx';
 import Delivery from './Delivery.jsx';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Navbar from "./Navbar";
+import Orders from "./Orders";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/register' element={<Register />}></Route>
           <Route path='/inventory' element={<Inventory />}></Route>
           <Route path='/delivery' element={<Delivery />}></Route>
+          <Route path='/placeorders' element={<Orders />}></Route>
         </Routes>
       </BrowserRouter>
   );

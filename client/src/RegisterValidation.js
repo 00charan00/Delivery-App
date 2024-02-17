@@ -34,6 +34,12 @@ function Validation(values) {
     {
         error.password="";
     }
+    if(values.role===""){
+        error.role="Select Role";
+    }
+    else{
+        error.role="";
+    }
     return error;
 }
 

@@ -11,7 +11,8 @@ function Register() {
   const [values, setValues] = useState({
     name: '',
     email:'',
-    password: ''
+    password: '',
+    role: ''
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -55,10 +56,10 @@ function Register() {
             </label>
             <div className="mt-1">
               <input
-                type="text" placeholder="Enter name" name="name" onChange={handleInput}
-                className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  type="text" placeholder="Enter name" name="name" onChange={handleInput}
+                  className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors.name && <span className="text-sm text-red-500">{errors.name }</span>}
+              {errors.name && <span className="text-sm text-red-500">{errors.name}</span>}
             </div>
           </div>
 
@@ -68,12 +69,31 @@ function Register() {
             </label>
             <div className="mt-1">
               <input
-                type="email" placeholder="Enter email" name="email" onChange={handleInput}
-                className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  type="email" placeholder="Enter email" name="email" onChange={handleInput}
+                  className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors.email && <span className="text-sm text-red-500">{errors.email }</span>}
+              {errors.email && <span className="text-sm text-red-500">{errors.email}</span>}
             </div>
           </div>
+
+
+          <div>
+            <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
+              Choose Role
+            </label>
+            <div className="mt-1">
+              <select onChange={handleInput} name="role"
+                      className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option hidden disabled>Role</option>
+                <option name="role" value="deliveryagent">Delivery Agent</option>
+                <option name="role" value="inventoryagent">Inventory Agent</option>
+                <option name="role" value="normaluser">Normal User</option>
+              </select>
+              {errors.role && <span className="text-sm text-red-500">{errors.role}</span>}
+
+            </div>
+          </div>
+
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
@@ -81,17 +101,17 @@ function Register() {
             </label>
             <div className="mt-1">
               <input
-                type="password" placeholder="Enter password" name="password" onChange={handleInput}
-                className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  type="password" placeholder="Enter password" name="password" onChange={handleInput}
+                  className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors.password && <span className="text-sm text-red-500">{errors.password }</span>}
+              {errors.password && <span className="text-sm text-red-500">{errors.password}</span>}
             </div>
           </div>
 
           <div>
             <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               Register
             </button>
