@@ -37,7 +37,7 @@ function Login() {
               navigate('/delivery');
             }
             else if(res.data==="USER LOGIN"){
-              navigate('/orders');
+              navigate('/placeorders');
             }
             else {
               alert("failure")
@@ -81,6 +81,7 @@ function Login() {
             <div className="mt-1">
               <select onChange={handleInput} name="role"
                       className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option name="role" value="">Select</option>
                 <option name="role" value="deliveryagent">Delivery Agent</option>
                 <option name="role" value="inventoryagent">Inventory Agent</option>
                 <option name="role" value="normaluser">Normal User</option>

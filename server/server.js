@@ -3,8 +3,11 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
+const bodyParser = require("body-parser");
 app.use(express.json());
 app.use(cors());
+
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -12,6 +15,18 @@ const db = mysql.createConnection({
     password: "1030",
     database: "deliveryapp"
 });
+
+
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to database:', err);
+        return;
+    }
+    console.log('Connected to the database');
+});
+
+
+app.use(bodyParser.json());
 
 //register
 
@@ -82,7 +97,6 @@ app.post('/inventoryadd',(req,res)=>{
         req.body.p_category,
         req.body.expiry,
         req.body.check_in,
-
     ]
     db.query(sql,[values],(err,data)=>{
         if(err){
@@ -92,35 +106,95 @@ app.post('/inventoryadd',(req,res)=>{
     })
 })
 
-//inventory delete by inventory manager
 
-app.delete('/inventorydelete', (req, res) => {
-    const sql = "DELETE FROM inventory WHERE p_id=?";
-    const values = [
-        req.body.p_id,
-    ];
-    db.query(sql, values, (err, data) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.post('/purchase', (req, res) => {
+//     const { p_name } = req.body;
+//
+//     // Decrease the count of the product in the inventory table by one
+//     const decreaseCountQuery = 'UPDATE inventory SET count = count - 1 WHERE p_name = ? AND count > 0';
+//
+//     db.query(decreaseCountQuery, [p_name], (error, results) => {
+//         if (error) {
+//             console.error('Error decreasing product count:', error);
+//             return res.status(500).json({ error: 'Internal Server Error' });
+//         }
+//
+//         // Check if the product was found and its count was successfully decreased
+//         if (results.affectedRows === 0) {
+//             return res.status(404).json({ error: 'Product not found or out of stock' });
+//         }
+//
+//         // If the count was successfully decreased, proceed to insert into orders table
+//         const insertOrderQuery = 'INSERT INTO orders (p_name, p_category, expiry) VALUES (?, ?, ?)';
+//         const { p_category, expiry } = req.body;
+//         db.query(insertOrderQuery, [p_name, p_category, expiry], (error, results) => {
+//             if (error) {
+//                 console.error('Error inserting into orders table:', error);
+//                 return res.status(500).json({ error: 'Internal Server Error' });
+//             }
+//
+//             // Respond with success
+//             res.json({ message: 'Booking successful' });
+//         });
+//     });
+// });
+
+
+
+
+
+
+app.post('/book', (req, res) => {
+    const { name, address, count, p_name, p_category, expiry } = req.body;
+    const sql = "INSERT INTO orders (name, address, p_name, p_category, expiry, count) VALUES (?, ?, ?, ?, ?, ?)";
+    const values = [name, address, p_name, p_category, expiry, count];
+    db.query(sql, values, (err, result) => {
         if (err) {
-            return res.json("ERROR IN INVENTORYDB");
+            console.error('Error booking product:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
         }
-        return res.json(data);
+        res.json({ message: 'Product booked successfully!' });
     });
 });
 
-//inventory delete by delivery agent
 
-app.delete('/deliverydelete', (req, res) => {
-    const sql = "DELETE FROM inventory WHERE p_id=?";
-    const values = [
-        req.body.p_id,
-    ];
-    db.query(sql, values, (err, data) => {
+
+app.get('/orders', (req, res) => {
+    const sql = "SELECT * FROM orders";
+    db.query(sql, (err, data) => {
         if (err) {
-            return res.json("ERROR IN INVENTORYDB");
+            console.error('Error fetching orders:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
         }
-        return res.json(data);
+        res.json(data);
     });
 });
+
+
+
+
+
+
 
 
 
@@ -132,5 +206,6 @@ app.get('/',(req,res)=>{
     res.json("Hii charan");
 })
 app.listen(8080, () => {
-    console.log("listening in 8080");
+    console.log("Listening in 8080");
 });
+
