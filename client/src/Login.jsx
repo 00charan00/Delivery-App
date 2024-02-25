@@ -28,7 +28,7 @@ function Login() {
     // Use setTimeout to ensure that errors state has been updated before checking
     setTimeout(() => {
       if (Object.values(errors).every(error => error === "")) {
-        axios.post('http://localhost:8080/login', values)
+        axios.post('https://delivery-app-backend-qtge.onrender.com/login', values)
           .then(res => {
             if (res.data === "INVENTORY AGENT") {
               navigate('/inventory');

@@ -16,7 +16,7 @@ function Inventory() {
         e.preventDefault();
         try {
             console.log("Form Data:", formData);
-            const response = await axios.post('http://localhost:8080/inventoryadd', formData);
+            const response = await axios.post('https://delivery-app-backend-qtge.onrender.com/inventoryadd', formData);
             console.log("successful transfer from frontend to backend");
             window.location.reload();
             console.log("Response:", response.data);

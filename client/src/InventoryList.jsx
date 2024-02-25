@@ -20,7 +20,7 @@ function InventoryList() {
     const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
-        fetch('/http://localhost:8080/inventory')
+        fetch('https://delivery-app-backend-qtge.onrender.com/inventory')
             .then(response => response.json())
             .then(data => {
                 setInventory(data);

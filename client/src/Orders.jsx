@@ -7,7 +7,7 @@ const Orders = () => {
     const [inventory, setInventory] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/inventory')
+        axios.get('https://delivery-app-backend-qtge.onrender.com/inventory')
             .then(response => {
                 setInventory(response.data);
             })
@@ -22,7 +22,7 @@ const Orders = () => {
         const itemCount = parseInt(prompt('Enter the number of items needed:'));
 
         if (userName && userAddress && itemCount) {
-            axios.post('http://localhost:8080/book', {
+            axios.post('https://delivery-app-backend-qtge.onrender.com/book', {
                 name: userName,
                 address: userAddress,
                 count: itemCount,

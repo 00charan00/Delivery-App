@@ -16,7 +16,7 @@ function Home() {
 
     const fetchInventoryData = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/inventory");
+            const response = await axios.get("https://delivery-app-backend-qtge.onrender.com/inventory");
             setInventoryData(response.data);
         } catch (error) {
             console.error("Error fetching inventory data:", error);

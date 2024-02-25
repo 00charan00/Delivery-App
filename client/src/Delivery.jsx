@@ -7,7 +7,7 @@ const Delivery = () => {
 
     useEffect(() => {
         // Fetch orders from backend
-        axios.get('http://localhost:8080/orders')
+        axios.get('https://delivery-app-backend-qtge.onrender.com/orders')
             .then(response => {
                 setOrders(response.data);
             })
@@ -28,7 +28,7 @@ const Delivery = () => {
 
     const updateStatus = (orderId, status) => {
         // Update status in backend
-        axios.post('http://localhost:8080/updateOrderStatus', { orderId, status })
+        axios.post('https://delivery-app-backend-qtge.onrender.com/updateOrderStatus', { orderId, status })
             .then(response => {
                 if (response.data.success) {
                     setOrders(prevOrders =>
