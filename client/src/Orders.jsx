@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from "./Navbar";
+import moment from "moment/moment";
 
 const Orders = () => {
     const [inventory, setInventory] = useState([]);
@@ -38,7 +40,10 @@ const Orders = () => {
     };
 
     return (
+        <div><Navbar/>
         <div className="container mx-auto">
+
+
             <h1 className="text-2xl font-bold mb-4">Inventory</h1>
             <table className="table-auto w-full">
                 <thead>
@@ -56,7 +61,7 @@ const Orders = () => {
                         <td className="border px-4 py-2">{item.p_name}</td>
                         <td className="border px-4 py-2">{item.count}</td>
                         <td className="border px-4 py-2">{item.p_category}</td>
-                        <td className="border px-4 py-2">{item.expiry}</td>
+                        <td className="border px-4 py-2">{moment(item.expiry).format('DD-MM-YYYY')}</td>
                         <td className="border px-4 py-2">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => bookProduct(item.p_name, item.p_category, item.expiry)}>Book</button>
                         </td>
@@ -64,6 +69,7 @@ const Orders = () => {
                 ))}
                 </tbody>
             </table>
+        </div>
         </div>
     );
 };

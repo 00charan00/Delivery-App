@@ -2,6 +2,8 @@ const express = require("express");
 // const bodyParser = require('body-parser');
 const mysql = require("mysql");
 const cors = require("cors");
+// require("dotenv").config();
+
 const app = express();
 const bodyParser = require("body-parser");
 app.use(express.json());
@@ -112,56 +114,6 @@ app.post('/inventoryadd',(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.post('/purchase', (req, res) => {
-//     const { p_name } = req.body;
-//
-//     // Decrease the count of the product in the inventory table by one
-//     const decreaseCountQuery = 'UPDATE inventory SET count = count - 1 WHERE p_name = ? AND count > 0';
-//
-//     db.query(decreaseCountQuery, [p_name], (error, results) => {
-//         if (error) {
-//             console.error('Error decreasing product count:', error);
-//             return res.status(500).json({ error: 'Internal Server Error' });
-//         }
-//
-//         // Check if the product was found and its count was successfully decreased
-//         if (results.affectedRows === 0) {
-//             return res.status(404).json({ error: 'Product not found or out of stock' });
-//         }
-//
-//         // If the count was successfully decreased, proceed to insert into orders table
-//         const insertOrderQuery = 'INSERT INTO orders (p_name, p_category, expiry) VALUES (?, ?, ?)';
-//         const { p_category, expiry } = req.body;
-//         db.query(insertOrderQuery, [p_name, p_category, expiry], (error, results) => {
-//             if (error) {
-//                 console.error('Error inserting into orders table:', error);
-//                 return res.status(500).json({ error: 'Internal Server Error' });
-//             }
-//
-//             // Respond with success
-//             res.json({ message: 'Booking successful' });
-//         });
-//     });
-// });
-
-
-
-
-
-
 app.post('/book', (req, res) => {
     const { name, address, count, p_name, p_category, expiry } = req.body;
     const sql = "INSERT INTO orders (name, address, p_name, p_category, expiry, count) VALUES (?, ?, ?, ?, ?, ?)";
@@ -193,6 +145,36 @@ app.get('/orders', (req, res) => {
 
 
 
+
+
+
+// app.post('/updateOrderStatus', (req, res) => {
+//     const { orderId, status } = req.body;
+//     const sql = "UPDATE orders SET status = ? WHERE id = ?";
+//     db.query(sql, [status, orderId], (err, result) => {
+//         if (err) {
+//             console.error('Error updating order status:', err);
+//             res.json({ success: false });
+//             return;
+//         }
+//         res.json({ success: true });
+//     });
+// });
+
+
+
+app.post('/updateOrderStatus', (req, res) => {
+    const { orderId, status } = req.body;
+    const sql = "UPDATE orders SET status = ? WHERE id = ?";
+    db.query(sql, [status, orderId], (err, result) => {
+        if (err) {
+            console.error('Error updating order status:', err);
+            res.json({ success: false });
+            return;
+        }
+        res.json({ success: true });
+    });
+});
 
 
 

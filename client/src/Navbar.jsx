@@ -1,22 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from './assets/logo.png';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
     return (
-        <nav className="fixed top-0 left-0 right-0 z-10 bg-gray-800 p-4 text-white flex items-center ">
-            <img className="h-10 w-10 " src={logo} alt="Logo" />
-            <div className="flex items-center">
-                <Link to="/home" className="text-white ml-4">Link</Link>
-                <Link to="/home" className="text-white ml-4">Link</Link>
-                <Link to="/home" className="text-white ml-4">Link</Link>
-                <Link to="/home" className="text-white ml-4">Link</Link>
-                <Link to="/home" className="text-white ml-4">Link</Link>
-                <Link to="/home" className="text-white ml-4">Link</Link>
+        <nav className="bg-gray-800 p-4">
+            <div className="container mx-auto flex justify-between items-center">
+                <div className="text-white text-xl font-bold">Delivery App</div>
+                <ul className="flex space-x-4">
 
+                    <li>
+                        <Link
+                            to="/home"
+                            className="text-white hover:bg-gray-700 px-3 py-2 rounded"
+                        >
+                            Home
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link
+                            to="/inventory"
+                            className="text-white hover:bg-gray-700 px-3 py-2 rounded"
+                        >
+                            Inventory
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/delivery"
+                            className="text-white hover:bg-gray-700 px-3 py-2 rounded"
+                        >
+                            Delivery
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/placeorders"
+                            className="text-white hover:bg-gray-700 px-3 py-2 rounded"
+                        >
+                            Place Orders
+                        </Link>
+                    </li>
+                </ul>
             </div>
         </nav>
     );
-};
+}
 
 export default Navbar;

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import InventoryTable from "./FetchInventory";
 import axios from 'axios';
+import Navbar from "./Navbar";
 
 function Inventory() {
     const [formData, setFormData] = useState({
-        p_name: '', count: '', p_category: '', expiry: '', check_in: ''
+        p_name: '', count: '', p_category: 'Perishable', expiry: '', check_in: ''
     });
 
     const handleChange = (e) => {
@@ -23,7 +24,11 @@ function Inventory() {
             console.error('Error:', error);
         }
     };
-    return (<div className="flex justify-center flex-col items-center">
+    return (
+        <div>
+            <Navbar/>
+
+        <div className="flex justify-center flex-col items-center">
         <form onSubmit={handleSubmit}>
             <div className="rounded-3xl bg-amber-50 border-amber-200 flex-auto p-4">
                 <div className="flex flex-wrap -mx-2">
@@ -58,7 +63,8 @@ function Inventory() {
                             onChange={handleChange}
 
                         >
-                            <option defaultValue="Perishable/Non Perishable" value="Perishable">Perishable</option>
+
+                            <option value="Perishable">Perishable</option>
                             <option value="Non-Perishable">Non-Perishable</option>
                         </select>
 
@@ -98,7 +104,9 @@ function Inventory() {
         <div className="mt-4">
             <InventoryTable/>
         </div>
-    </div>);
+    </div>
+        </div>
+            );
 }
 
 export default Inventory;

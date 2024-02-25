@@ -4,14 +4,12 @@ import Home from './Home.jsx';
 import Inventory from './Inventory.jsx';
 import Delivery from './Delivery.jsx';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Navbar from "./Navbar";
 import Orders from "./Orders";
 
 
 function App() {
   return (
       <BrowserRouter>
-          {/*<Navbar/>*/}
         <Routes>
           <Route path='/' element={<Login />}></Route>
           <Route path='/home' element={<Home />}></Route>
