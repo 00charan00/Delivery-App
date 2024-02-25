@@ -1,6 +1,8 @@
 const express = require("express");
 // const bodyParser = require('body-parser');
-const mysql = require("mysql");
+const mysql = require('mysql2');
+
+// const mysql = require("mysql");
 const cors = require("cors");
 // require("dotenv").config();
 
@@ -11,12 +13,16 @@ app.use(cors());
 
 
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1030",
-    database: "deliveryapp"
-});
+const db=mysql.createConnection(`mysql://avnadmin:AVNS_wqJEv19TwrJJCpoRrZE@mysql-1501fbdc-charansdb.a.aivencloud.com:20259/delivery`);
+
+
+
+// const db = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "1030",
+//     database: "deliveryapp"
+// });
 
 
 db.connect((err) => {
@@ -108,12 +114,6 @@ app.post('/inventoryadd',(req,res)=>{
     })
 })
 
-
-
-
-
-
-
 app.post('/book', (req, res) => {
     const { name, address, count, p_name, p_category, expiry } = req.body;
     const sql = "INSERT INTO orders (name, address, p_name, p_category, expiry, count) VALUES (?, ?, ?, ?, ?, ?)";
@@ -142,27 +142,6 @@ app.get('/orders', (req, res) => {
     });
 });
 
-
-
-
-
-
-
-// app.post('/updateOrderStatus', (req, res) => {
-//     const { orderId, status } = req.body;
-//     const sql = "UPDATE orders SET status = ? WHERE id = ?";
-//     db.query(sql, [status, orderId], (err, result) => {
-//         if (err) {
-//             console.error('Error updating order status:', err);
-//             res.json({ success: false });
-//             return;
-//         }
-//         res.json({ success: true });
-//     });
-// });
-
-
-
 app.post('/updateOrderStatus', (req, res) => {
     const { orderId, status } = req.body;
     const sql = "UPDATE orders SET status = ? WHERE id = ?";
@@ -175,8 +154,6 @@ app.post('/updateOrderStatus', (req, res) => {
         res.json({ success: true });
     });
 });
-
-
 
 
 
