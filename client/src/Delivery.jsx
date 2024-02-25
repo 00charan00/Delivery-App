@@ -76,7 +76,7 @@ const Delivery = () => {
                                 {!order.delivered && (
                                     <>
                                         <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2" onClick={() => markDelivered(order.id)}>Delivered</button>
-                                        <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded" onClick={() => cancelOrder(order.id)}>X</button>
+                                        <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-2 rounded" onClick={() => cancelOrder(order.id)}>Unanswered</button>
                                     </>
                                 )}
                             </td>
