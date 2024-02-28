@@ -9,7 +9,17 @@ function Inventory() {
     });
 
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        const { name, value } = e.target;
+        if (name === 'expiry') {
+            // Prevent selecting past dates
+            const currentDate = new Date();
+            const selectedDate = new Date(value);
+            if (selectedDate < currentDate) {
+                alert("Expiry date is in past")
+                return;
+            }
+        }
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = async (e) => {
@@ -76,7 +86,7 @@ function Inventory() {
                             className="shadow appearance-none border rounded w-full py-1 px-2 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="date"
                             name="expiry"
-                            value={formData.expiry}
+                            value={moment(formData.expiry.format("DD-MM-YYYY"))}
                             onChange={handleChange}
                         />
                     </div>

@@ -98,6 +98,7 @@ app.get('/inventory', (req, res) => {
 
 app.post('/inventoryadd',(req,res)=>{
     console.log(req.body.data);
+
     const sql="INSERT INTO inventory(`p_name`,`count`,`p_category`,`expiry`,`check_in`) VALUES (?)";
     const values=[
         req.body.p_name,
@@ -157,7 +158,9 @@ app.post('/updateOrderStatus', (req, res) => {
 
 
 
-
+const current = new Date();
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+console.log(date);
 
 
 app.get('/',(req,res)=>{
