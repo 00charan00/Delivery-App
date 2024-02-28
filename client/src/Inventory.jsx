@@ -11,10 +11,13 @@ function Inventory() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === 'expiry') {
+            alert(e.target.value);
+            alert(e.target.value.expiry);
             // Prevent selecting past dates
-            const currentDate = new Date();
+            const current = new Date();
+            const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
             const selectedDate = new Date(value);
-            if (selectedDate < currentDate) {
+            if (selectedDate < current) {
                 alert("Expiry date is in past")
                 return;
             }
