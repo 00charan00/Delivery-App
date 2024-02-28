@@ -89,7 +89,7 @@ function Inventory() {
                             className="shadow appearance-none border rounded w-full py-1 px-2 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="date"
                             name="expiry"
-                            value={moment(formData.expiry.format("DD-MM-YYYY"))}
+                            value={formData.expiry}
                             onChange={handleChange}
                         />
                     </div>
